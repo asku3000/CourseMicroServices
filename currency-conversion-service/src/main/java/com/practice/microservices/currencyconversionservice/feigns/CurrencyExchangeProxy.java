@@ -8,11 +8,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.practice.microservices.currencyconversionservice.models.CurrencyConversionBean;
 
-@FeignClient(name = "currency-exchange-service")
+//@FeignClient(name = "currency-exchange-service")
+@FeignClient(name = "zuul-api-gateway-server")
 @RibbonClient(name = "currency-exchange-service")
 public interface CurrencyExchangeProxy {
 
-	@RequestMapping(value = "/currency-exchange/from/{from}/to/{to}", method = RequestMethod.GET)
+	/*
+	 * @RequestMapping(value = "/currency-exchange/from/{from}/to/{to}", method =
+	 * RequestMethod.GET) public CurrencyConversionBean
+	 * retrieveExchangeValue(@PathVariable("from") String from,
+	 * 
+	 * @PathVariable("to") String to);
+	 */
+	
+	@RequestMapping(value = "/currency-exchange-service/currency-exchange/from/{from}/to/{to}", method = RequestMethod.GET)
 	public CurrencyConversionBean retrieveExchangeValue(@PathVariable("from") String from,
 			@PathVariable("to") String to);
 
